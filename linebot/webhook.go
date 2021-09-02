@@ -28,23 +28,22 @@ func Webhook(events []*linebot.Event, r *http.Request) {
 				if strings.Contains(text, "いぬ") {
 					replyDog := api.GetRandomDog()
 					if _, err := bot.ReplyMessage(e.ReplyToken, linebot.NewImageMessage(replyDog, replyDog)).Do(); err != nil {
-						log.Fatal(err)
+						log.Print(err)
+						bot.ReplyMessage(e.ReplyToken, linebot.NewTextMessage("わんちゃんは見つかりませんでした…。")).Do()
 					}
 				} else if strings.Contains(text, "ねこ") {
 					replyCat := api.GetRandomCat()
 					if _, err := bot.ReplyMessage(e.ReplyToken, linebot.NewImageMessage(replyCat, replyCat)).Do(); err != nil {
-						log.Fatal(err)
+						log.Print(err)
+						bot.ReplyMessage(e.ReplyToken, linebot.NewTextMessage("ねこちゃんは見つかりませんでした…。")).Do()
 					}
 				} else {
-					continue
-				}
-			default:
-				replyText := "「いぬ」or「ねこ」でメッセージを送ってね！"
-				if _, err := bot.ReplyMessage(e.ReplyToken, linebot.NewTextMessage(replyText)).Do(); err != nil {
-					log.Fatal(err)
+					replyText := "「いぬ」or「ねこ」でメッセージを送ってね！"
+					if _, err := bot.ReplyMessage(e.ReplyToken, linebot.NewTextMessage(replyText)).Do(); err != nil {
+						log.Print(err)
+					}
 				}
 			}
-
 		}
 	}
 }

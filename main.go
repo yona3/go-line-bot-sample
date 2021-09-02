@@ -7,13 +7,9 @@ import (
 	"os"
 
 	"github.com/yona3/go-line-bot-sample/linebot"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	loadEnv()
-
 	handler, err := linebot.NewHandler()
 	if err != nil {
 		log.Fatal(err)
@@ -31,11 +27,4 @@ func main() {
 
 	log.Printf("Listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
-}
-
-func loadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Error loading .env file")
-	}
 }
