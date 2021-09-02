@@ -11,6 +11,7 @@ import (
 func main() {
 	loadEnv()
 	api.GetRandomCat()
+	api.GetRandomDog()
 }
 
 func loadEnv() {
