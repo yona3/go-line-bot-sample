@@ -9,11 +9,6 @@ import (
 	"github.com/yona3/go-line-bot-sample/util"
 )
 
-type DogResponse struct {
-	Message string `json:"message"`
-	Status  string `json:"status"`
-}
-
 type CatResponse struct {
 	File string `json:"file"`
 }
@@ -29,12 +24,16 @@ func GetRandomCat() string {
 	defer res.Body.Close()
 
 	var d CatResponse
-	err = util.JsonParse(res, &d)
-	if err != nil {
+	if err = util.JsonParse(res, &d); err != nil {
 		log.Fatal(err)
 	}
 
 	return d.File
+}
+
+type DogResponse struct {
+	Message string `json:"message"`
+	Status  string `json:"status"`
 }
 
 func GetRandomDog() string {
@@ -48,8 +47,7 @@ func GetRandomDog() string {
 	defer res.Body.Close()
 
 	var d DogResponse
-	err = util.JsonParse(res, &d)
-	if err != nil {
+	if err = util.JsonParse(res, &d); err != nil {
 		log.Fatal(err)
 	}
 
