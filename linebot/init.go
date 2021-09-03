@@ -3,7 +3,7 @@ package linebot
 import (
 	"os"
 
-	"github.com/line/line-bot-sdk-go/v7/linebot"
+	sdk "github.com/line/line-bot-sdk-go/v7/linebot"
 	"github.com/line/line-bot-sdk-go/v7/linebot/httphandler"
 )
 
@@ -14,7 +14,7 @@ func NewHandler() (*httphandler.WebhookHandler, error) {
 	return handler, err
 }
 
-func NewBot(handler *httphandler.WebhookHandler) (*linebot.Client, error) {
+func NewBot(handler *httphandler.WebhookHandler) (*sdk.Client, error) {
 	bot, err := handler.NewClient()
 	return bot, err
 }
