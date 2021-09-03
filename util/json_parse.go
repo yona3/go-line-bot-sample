@@ -12,9 +12,10 @@ func JsonParse(r *http.Response, d interface{}) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = json.Unmarshal(b, &d)
-	if err != nil {
+
+	if err = json.Unmarshal(b, &d); err != nil {
 		log.Fatal(err)
 	}
+
 	return nil
 }
